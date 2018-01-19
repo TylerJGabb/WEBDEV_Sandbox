@@ -1,2 +1,0 @@
-https://www.w3schools.com/cssref/pr_pos_top.asp
-https://stackoverflow.com/questions/13504319/how-to-i-create-two-containers-with-different-backgrounds
