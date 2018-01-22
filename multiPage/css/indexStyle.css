@@ -1,0 +1,22 @@
+body{
+    background-color : hsl(255,75%,50%);
+    margin : 0;
+  }
+  
+  a.hover-test{
+    display : inline-block;
+    margin : 10;
+    background-color : hsla(0,0%,0%,0.0);/*Hue, Saturation, Lightness, Alpha*/
+    color: hsla(0,0%,0%,0.0);
+    border : none;
+    padding : 20px;
+    font-size : 20px;
+    outline : none;/*Stops the default blue border around a button once it has been clicked*/
+    text-decoration: none;
+  }
+  
+  a.hover-test:hover{
+      background-color : hsl(0,0%,50%);
+      border : 2px solid black;
+      color : black;
+  }
