@@ -40,10 +40,9 @@ var sceneUtilities = {
 class Ball {
     constructor(radius, color) {
         this.r_0 = radius;
-        this.color_0 = color;
         var geom = new THREE.SphereGeometry(radius,2*radius,2*radius);
         var mat = new THREE.MeshBasicMaterial({
-            color : color,
+            color : color
             //wireframe : true
         });
 
