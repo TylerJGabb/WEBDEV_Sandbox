@@ -4,16 +4,18 @@ var container = document.getElementById('container');
 var containerWidth = container.clientWidth;
 var containerHeight = container.clientHeight;
 var scene = new THREE.Scene();
-scene.background = new THREE.Color(0,0,0);
+scene.background = new THREE.Color(0xdcd9cd);
 var camera = new THREE.PerspectiveCamera(45, containerWidth / containerHeight, 1, 1000);
 var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false});
 renderer.setSize(containerWidth,containerHeight);
 container.appendChild(renderer.domElement);
+camera.position.set(0,0,100);
+camera.lookAt( new THREE.Vector3(0,0,0));
+
+//add a light
 var light = new THREE.PointLight(0xffffff,5,200);
 light.position.set(0,0,100);
 scene.add(light);
-camera.position.set(0,0,100);
-camera.lookAt( new THREE.Vector3(0,0,0));
 
 
 //Make a bunch of random cubes
@@ -60,7 +62,6 @@ function onMouseMove(e){
     raycaster.setFromCamera(mouse,camera);
     intersections = raycaster.intersectObjects(cubes)
     for( var i = 0; i < intersections.length; i++){
-        console.log(intersections);
         if(!intersections[ i ].object.clicked){
             intersections[ i ].object.material.color.setRGB( 1.0 - i / intersections.length, 0, 0);
         }
@@ -85,9 +86,11 @@ container.addEventListener('click',onMouseClick,false);
 
 
 
-
+var controls = new THREE.OrbitControls( camera, renderer.domElement );
+controls.update();
 function animate(){
     requestAnimationFrame( animate );
+    controls.update();
     renderer.render( scene, camera );  
 }
 
