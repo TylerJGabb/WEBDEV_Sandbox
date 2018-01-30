@@ -16,6 +16,15 @@ previewWindow.appendChild(previewRender.domElement);
 previewScene.add(previewXYGrid);
 previewCamera.position.set(0,0,100);
 
+//lights
+var pointLight = new THREE.PointLight(0xffffff,5,100)
+pointLight.position.set(0,0,75);
+scene.add(pointLight)
+
+var ambientLight = new THREE.AmbientLight( 0x404040 ); // soft white light
+scene.add( ambientLight );
+
+
 var sceneUtilities = {
     gridOn : false,
     ToggleGrid(){
@@ -41,7 +50,7 @@ class Ball {
     constructor(radius, color) {
         this.r_0 = radius;
         var geom = new THREE.SphereGeometry(radius,2*radius,2*radius);
-        var mat = new THREE.MeshBasicMaterial({
+        var mat = new THREE.MeshLambertMaterial({
             color : color
             //wireframe : true
         });
@@ -60,7 +69,7 @@ class Ball {
 
     set radius(value) {
         var scale = value/this.r_0;
-        this.mesh.scale.x = 
+        this.mesh.scale.x =
         this.mesh.scale.y =
         this.mesh.scale.z = scale;
     }
@@ -91,8 +100,8 @@ function animate(){
     requestAnimationFrame( animate );
     controls.update();
     previewControls.update();
-    renderer.render( scene, camera );  
-    previewRender.render( previewScene, previewCamera ) 
+    renderer.render( scene, camera );
+    previewRender.render( previewScene, previewCamera )
 }
 
 var b = new Ball(10,0xffffff);
