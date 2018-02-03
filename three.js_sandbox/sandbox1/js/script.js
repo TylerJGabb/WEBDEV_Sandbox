@@ -12,23 +12,34 @@ container.appendChild(renderer.domElement);
 var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 //Lights
-//var ambientLight = new THREE.AmbientLight(0x404040);//SOFT WHITE LIGHT
-//var pointLight = new THREE.PointLight(0xffffff,1,100);
-//pointLight.position.set(50,50,50);
-//scene.add(ambientLight);
+var ambientLight = new THREE.AmbientLight(0x404040);//SOFT WHITE LIGHT
+scene.add(ambientLight);
 //scene.add(pointLight);
 
 
 
 //================================= CODE GOES HERE==============
-//Example material, geometry, and mesh
-var geom = new THREE.SphereGeometry(5,15,15);
-var mat = new THREE.MeshStandardMaterial({
-  color : 0x56D3F0
-});
+var center = new Sphere(3,0x123456)
+var light = new Sphere(1,0xffffff)
+light.emissive = 0xffffff;
+var pointLight = new THREE.PointLight(0xffffff,1,100);
+var g = new THREE.Object3D()
+g.add(pointLight)
+g.add(light.mesh)
+center.addToScene(scene)
 
-var mesh = new THREE.Mesh(geom,mat);
-scene.add(mesh);
+scene.add(g)
+
+
+var interval = 2*Math.PI/360
+var t = 0
+function update(){
+  g.position.x = 5*Math.cos(t)
+  g.position.y = 5*Math.sin(t)
+  t += interval;
+  if(t >= 2*Math.PI)
+    t = 0
+}
 
 //=================================================================
 
@@ -38,6 +49,7 @@ controls.update();
 function animate(){
   requestAnimationFrame(animate);
   controls.update()
+  update()
   renderer.render(scene,camera);
 };
 
