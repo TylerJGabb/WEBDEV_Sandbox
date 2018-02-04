@@ -1,12 +1,13 @@
 //Set up the animation window
+//var THREE = require('three')
 
 var container = document.getElementById('container');
 var containerWidth = container.clientWidth;
 var containerHeight = container.clientHeight;
 var scene = new THREE.Scene();
-scene.background = new THREE.Color(0,0,0);
 var camera = new THREE.PerspectiveCamera(45, containerWidth / containerHeight, 1, 1000);
 var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false});
+renderer.setClearColor(0x505050)
 renderer.setSize(containerWidth,containerHeight);
 container.appendChild(renderer.domElement);
 var light = new THREE.PointLight(0xffffff,5,200);
@@ -17,12 +18,15 @@ camera.lookAt( new THREE.Vector3(0,0,0));
 
 
 //Make a bunch of random cubes
-var range = 50;
-var geom = new THREE.CubeGeometry(5,5,5);
+var range = 75;
 var cubes = [];
 for(var i = 0; i < 100; i++){
     var grayness = Math.random() * 0.5 + 0.25;
-    var mat = new THREE.MeshLambertMaterial();//MEsh lambert is a reflective material and will respond to lights
+    var geom = new THREE.CubeGeometry(2*Math.random() + 3,2*Math.random() + 3,2*Math.random() + 3);
+    var mat = new THREE.MeshStandardMaterial({
+        roughness : 0.5,
+        metalness : 0.8
+    });//MEsh lambert is a reflective material and will respond to lights
     var cube = new THREE.Mesh(geom,mat);
     mat.color.setRGB(grayness,grayness,grayness);
     cube.position.set (
@@ -54,6 +58,7 @@ function onMouseMove(e){
             c.material.color.setRGB(c.grayness,c.grayness,c.grayness);
         }
     })
+    //@note: transforming the x and y positions of the mouse to [ [-1 1] [-1 1] ] space
     mouse.x = ( e.clientX / renderer.domElement.clientWidth ) * 2 - 1;
     mouse.y = - ( e.clientY / renderer.domElement.clientHeight ) * 2 + 1;
     raycaster.setFromCamera(mouse,camera);
