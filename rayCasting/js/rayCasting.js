@@ -1,5 +1,5 @@
 //Set up the animation window
-//var THREE = require('three')
+var THREE = require('three')
 
 var container = document.getElementById('container');
 var containerWidth = container.clientWidth;
@@ -15,7 +15,6 @@ light.position.set(0,0,100);
 scene.add(light);
 camera.position.set(0,0,100);
 camera.lookAt( new THREE.Vector3(0,0,0));
-
 
 //Make a bunch of random cubes
 var range = 75;
@@ -97,3 +96,5 @@ function animate(){
 }
 
 animate();
+
+
