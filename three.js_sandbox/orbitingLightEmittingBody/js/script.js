@@ -1,4 +1,5 @@
-//var THREE = require('three');
+if(!document)
+    var THREE = require('three');
 
 //Bare Bones Setup With Orbital Camera
 var scene = new THREE.Scene();
@@ -22,7 +23,7 @@ scene.add(ambientLight);
 var center = new Sphere(3,0x123456)
 var light = new Sphere(1,0xffffff)
 light.emissive = 0xffffff;
-var pointLight = new THREE.PointLight(0xffffff,1,100);
+var pointLight = new THREE.PointLight(0xffffff, 1, 100);
 var g = new THREE.Object3D()
 g.add(pointLight)
 g.add(light.mesh)
