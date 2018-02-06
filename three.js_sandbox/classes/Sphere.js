@@ -16,7 +16,6 @@ class Sphere{
         this.mesh = new THREE.Mesh(geom, mat)
         this.center = { position: new THREE.Vector3(0, 0, 0) }
         if (orbitalParameters) {
-            console.log("orbital parameters present");
             this.orbitalDistance = orbitalParameters.orbitalDistance ? orbitalParameters.orbitalDistance : 0;
             this.thetaDot = orbitalParameters.thetaDot ? orbitalParameters.thetaDot : 0;
             this.theta0 = orbitalParameters.theta0 ? orbitalParameters.theta0 : 0;
@@ -47,7 +46,7 @@ class Sphere{
         this.theta += this.thetaDot * deltaT/1000;
         this.position.setFromSpherical(new THREE.Spherical(
             this.orbitalDistance,
-            Math.PI / 2 - this.tilt * Math.cos(this.theta),
+            Math.PI / 2 - this.tilt * Math.cos(this.theta - this.theta0),// ... - this.theta0 is important
             this.theta
         )).add(this.center.position);
     }
