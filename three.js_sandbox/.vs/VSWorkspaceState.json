@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\classes",
-    "\\orbitingLightEmittingBody",
-    "\\orbitingLightEmittingBody\\js"
+    "\\simpleDynamics\\js",
+    "\\template\\js"
   ],
-  "SelectedNode": "\\orbitingLightEmittingBody\\js\\script.js",
   "PreviewInSolutionExplorer": false
 }

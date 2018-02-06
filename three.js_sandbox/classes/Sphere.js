@@ -15,29 +15,41 @@ class Sphere{
         });
         this.mesh = new THREE.Mesh(geom, mat)
         this.center = { position: new THREE.Vector3(0, 0, 0) }
-        this.orbitalDistance = orbitalParameters ? orbitalParameters.orbitalDistance : 0;
-        this.thetaDot = orbitalParameters ? orbitalParameters.thetaDot : 0;
-
+        if (orbitalParameters) {
+            console.log("orbital parameters present");
+            this.orbitalDistance = orbitalParameters.orbitalDistance ? orbitalParameters.orbitalDistance : 0;
+            this.thetaDot = orbitalParameters.thetaDot ? orbitalParameters.thetaDot : 0;
+            this.theta0 = orbitalParameters.theta0 ? orbitalParameters.theta0 : 0;
+            this.tilt = orbitalParameters.tilt ? orbitalParameters.tilt : 0;
+        } else {
+            this.orbitalDistance = 0;
+            this.thetaDot = 0;
+            this.theta0 = 0;
+            this.tilt = 0;
+        }
 
         /*
         SEE THESE LINKS
         https://threejs.org/docs/#api/math/Vector3 //.setFromSpherical
         https://threejs.org/docs/#api/math/Spherical
-        //start at (1, 0, 0) relative to this objects center
         //set position, it is conditional upon provided orbital parameters
         */
-        this.position = new THREE.Vector3()
-        this.position.setFromSpherical({
-            radius: 1,
-            phi: 1,
-            theta : 1
-        })
 
+        this.theta = this.theta0;
+        this.position.setFromSpherical(new THREE.Spherical(
+            this.orbitalDistance,
+            Math.PI/2 - this.tilt,
+            this.theta))
     }
 
     
-    update(deltaT){
-
+    update(deltaT) {
+        this.theta += this.thetaDot * deltaT/1000;
+        this.position.setFromSpherical(new THREE.Spherical(
+            this.orbitalDistance,
+            Math.PI / 2 - this.tilt * Math.cos(this.theta),
+            this.theta
+        )).add(this.center.position);
     }
     
     get color(){
@@ -60,9 +72,6 @@ class Sphere{
         return this.mesh.position
     }
 
-    set position(value) {
-        this.mesh.position.set(value.x,value.y,value.z);
-    }
 
     get metalness(){
         return this.mesh.material.metalness

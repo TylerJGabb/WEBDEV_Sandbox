@@ -15,11 +15,13 @@ var controls = new THREE.OrbitControls(camera, renderer.domElement);
 //Lights
 var ambientLight = new THREE.AmbientLight(0x404040);//SOFT WHITE LIGHT
 scene.add(ambientLight);
-//scene.add(pointLight);
 
 
 
 //================================= CODE GOES HERE==============
+var axisHelper = new THREE.AxisHelper(10);
+scene.add(axisHelper);
+
 var center = new Sphere(3,0x123456)
 var light = new Sphere(1,0xffffff)
 light.emissive = 0xffffff;
