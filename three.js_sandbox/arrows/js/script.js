@@ -61,7 +61,7 @@ center.addToScene(scene);
 
 var orbiter = new Sphere(3, 0xffffff, {
     orbitalDistance: 20,
-    thetaDot: Math.PI / 2,
+    thetaDot : Math.PI / 2,
     theta0: Math.PI/4,
     tilt: Math.PI / 10
 })

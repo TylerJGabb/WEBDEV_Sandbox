@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\simpleDynamics\\js",
-    "\\template\\js"
+    "\\arrows",
+    "\\arrows\\js",
+    "\\classes",
+    "\\orbitingLightEmittingBody",
+    "\\simpleDynamics",
+    "\\simpleDynamics\\js"
   ],
+  "SelectedNode": "\\classes\\Sphere.js",
   "PreviewInSolutionExplorer": false
 }

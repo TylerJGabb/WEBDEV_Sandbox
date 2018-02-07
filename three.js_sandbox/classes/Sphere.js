@@ -17,7 +17,7 @@ class Sphere{
         this.center = { position: new THREE.Vector3(0, 0, 0) }
         if (orbitalParameters) {
             this.orbitalDistance = orbitalParameters.orbitalDistance ? orbitalParameters.orbitalDistance : 0;
-            this.thetaDot = orbitalParameters.thetaDot ? orbitalParameters.thetaDot : 0;
+            this.thetaDot = orbitalParameters.thetaDot ? orbitalParameters.thetaDot : 0;//radians per second
             this.theta0 = orbitalParameters.theta0 ? orbitalParameters.theta0 : 0;
             this.tilt = orbitalParameters.tilt ? orbitalParameters.tilt : 0;
         } else {

@@ -2,6 +2,11 @@ if (!document) {
     var THREE = require('three');
 }
 
+/**
+ * This is a yet another proof of concept class. This does not single out the angle for any
+ * particular normal. That is the next step
+ */
+
 var angles = []
 /**
  * given an object and its orbiting body, draws a dynamic angle between them with two arrow helpers and a circle.
