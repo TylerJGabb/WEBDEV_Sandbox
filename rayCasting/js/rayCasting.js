@@ -1,5 +1,7 @@
 //Set up the animation window
-var THREE = require('three')
+if (!document) {
+    var THREE = require('three')
+}
 
 var container = document.getElementById('container');
 var containerWidth = container.clientWidth;
@@ -19,6 +21,15 @@ camera.lookAt( new THREE.Vector3(0,0,0));
 //Make a bunch of random cubes
 var range = 75;
 var cubes = [];
+
+var geom = new THREE.SphereGeometry(1, 10, 10);
+var mat = new THREE.MeshStandardMaterial({
+    color: 0xffffff
+})
+var indicator = new THREE.Mesh(geom, mat);
+scene.add(indicator)
+
+
 for(var i = 0; i < 100; i++){
     var grayness = Math.random() * 0.5 + 0.25;
     var geom = new THREE.CubeGeometry(2*Math.random() + 3,2*Math.random() + 3,2*Math.random() + 3);
@@ -62,7 +73,11 @@ function onMouseMove(e){
     mouse.y = - ( e.clientY / renderer.domElement.clientHeight ) * 2 + 1;
     raycaster.setFromCamera(mouse,camera);
     intersections = raycaster.intersectObjects(cubes)//This
-    for( var i = 0; i < intersections.length; i++){
+    for (var i = 0; i < intersections.length; i++){
+        if (i == 0) {
+            var p = intersections[i].point;
+            indicator.position.set(p.x, p.y, p.z);
+        }
         console.log(intersections);
         if(!intersections[ i ].object.clicked){
             intersections[ i ].object.material.color.setRGB( 1.0 - i / intersections.length, 0, 0);

@@ -5,9 +5,11 @@
     "\\arrows\\js",
     "\\classes",
     "\\orbitingLightEmittingBody",
-    "\\simpleDynamics",
+    "\\raycastingPlacement",
+    "\\raycastingPlacement\\css",
+    "\\raycastingPlacement\\js",
     "\\simpleDynamics\\js"
   ],
-  "SelectedNode": "\\classes\\Sphere.js",
+  "SelectedNode": "\\raycastingPlacement\\js\\script.js",
   "PreviewInSolutionExplorer": false
 }
