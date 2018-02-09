@@ -73,6 +73,11 @@ function onMouseMove(e){
     mouse.y = - ( e.clientY / renderer.domElement.clientHeight ) * 2 + 1;
     raycaster.setFromCamera(mouse,camera);
     intersections = raycaster.intersectObjects(cubes)//This
+    if (intersections.length > 0) {
+        indicator.visible = true;
+    } else {
+        indicator.visible = false;
+    }
     for (var i = 0; i < intersections.length; i++){
         if (i == 0) {
             var p = intersections[i].point;
@@ -84,7 +89,6 @@ function onMouseMove(e){
         }
 
     }
-
 }
 
 //add click event handler to change color of top-most intersected object
@@ -106,7 +110,7 @@ container.addEventListener('click',onMouseClick,false);
 
 
 function animate(){
-    requestAnimationFrame( animate );
+    requestAnimationFrame(animate);
     renderer.render( scene, camera );
 }
 

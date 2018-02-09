@@ -1,0 +1,25 @@
+div#animation-window{
+    width: 800px;
+    height : 400px;
+    background-color: dimgray;
+    z-index: 0;
+    position : relative;
+}
+
+div.dg.main{
+    position: absolute; /*any positional properties will now be relative to the parent*/
+    z-index: 10;
+    right : 0px;
+    top : 0px;
+}
+
+div#preview-window{
+    position: absolute;
+    width : 200px;
+    height : 200px;
+    z-index : 11;
+    left : 0;
+    bottom : 0;
+    background-color : grey;
+}
+
