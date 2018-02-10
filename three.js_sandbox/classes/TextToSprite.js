@@ -5,12 +5,18 @@ if (!document) {
 //taken from https://stackoverflow.com/questions/23514274/three-js-2d-text-sprite-labels
 function makeTextSprite(message, parameters) {
     if (parameters === undefined) parameters = {};
-    var fontface = parameters.hasOwnProperty("fontface") ? parameters["fontface"] : "Arial";
-    var fontsize = parameters.hasOwnProperty("fontsize") ? parameters["fontsize"] : 18;
-    var borderThickness = parameters.hasOwnProperty("borderThickness") ? parameters["borderThickness"] : 4;
-    var borderColor = parameters.hasOwnProperty("borderColor") ? parameters["borderColor"] : { r: 0, g: 0, b: 0, a: 1.0 };
-    var backgroundColor = parameters.hasOwnProperty("backgroundColor") ? parameters["backgroundColor"] : { r: 255, g: 255, b: 255, a: 1.0 };
-    var textColor = parameters.hasOwnProperty("textColor") ? parameters["textColor"] : { r: 0, g: 0, b: 0, a: 1.0 };
+    var fontface = parameters.hasOwnProperty("fontface") ?
+        parameters["fontface"] : "Arial";
+    var fontsize = parameters.hasOwnProperty("fontsize") ?
+        parameters["fontsize"] : 18;
+    var borderThickness = parameters.hasOwnProperty("borderThickness") ?
+        parameters["borderThickness"] : 4;
+    var borderColor = parameters.hasOwnProperty("borderColor") ?
+        parameters["borderColor"] : { r: 0, g: 0, b: 0, a: 1.0 };
+    var backgroundColor = parameters.hasOwnProperty("backgroundColor") ?
+        parameters["backgroundColor"] : { r: 255, g: 255, b: 255, a: 1.0 };
+    var textColor = parameters.hasOwnProperty("textColor") ?
+        parameters["textColor"] : { r: 0, g: 0, b: 0, a: 1.0 };
 
     var canvas = document.createElement('canvas');
     var context = canvas.getContext('2d');
@@ -30,11 +36,18 @@ function makeTextSprite(message, parameters) {
 
     var texture = new THREE.Texture(canvas)
     texture.needsUpdate = true;
-    texture.minFilter = THREE.LinearFilter;
+    texture.minFilter = THREE.LinearFilter;//prevents error message from dimensions not being power of two
 
     var spriteMaterial = new THREE.SpriteMaterial({ map: texture});
     var sprite = new THREE.Sprite(spriteMaterial);
-    sprite.scale.set(0.5 * fontsize, 0.25 * fontsize, 0.75 * fontsize);
+    sprite.scale.set(.2 * canvas.width, .25 * canvas.height);
+
+    sprite.scaleBy = function (scale) {
+        var xScale = scale * 0.5;
+        var yScale = scale * 0.25;
+        var zScale = scale * 0.75;
+        sprite.scale.set(.2 * canvas.width * scale, 0.25 * canvas.height * scale);
+    }
     return sprite;
 }
 
