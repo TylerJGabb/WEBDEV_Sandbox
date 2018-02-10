@@ -1,11 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\arrows\\js",
     "\\classes",
-    "\\raycasting_Cubes",
-    "\\raycasting_Cubes\\js"
+    "\\spotLight",
+    "\\spotLight\\css",
+    "\\spotLight\\js",
+    "\\textSprites",
+    "\\textSprites\\css",
+    "\\textSprites\\js"
   ],
-  "SelectedNode": "\\raycasting_Cubes\\js\\rayCasting.js",
+  "SelectedNode": "\\textSprites\\js\\textSprites.js",
   "PreviewInSolutionExplorer": false
 }

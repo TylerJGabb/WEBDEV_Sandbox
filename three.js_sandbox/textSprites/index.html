@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.js"></script>
+        <script src="js/controls/OrbitControls.js"></script>
+        <script src="../classes/TextToSprite.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="container"></div>
+        <ul>
+            <li>All sprites in this example had their scales set to the same values.</li>
+            <li>They have varying fontsizes.</li>
+            <li>Using an extremly high shadow resolution puts a gigantic load on the GPU</li>
+                <ul>
+                    <li>
+                        As can be seeon from the orbiting white ball, there is a problem trying to nail down the exact
+                        position of the sprite. I'll have to do a liuttle digging in the function which returns the sprite
+                        to find out how to deal with this and locate it's exact location
+                    </li>
+                    <li>
+                        This may have something to do with scaling
+                    </li>
+                </ul>
+
+        </ul>
+           
+        <script src="js/textSprites.js"></script>
+    </body>
+</html>
