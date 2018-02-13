@@ -1,11 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\spotLight\\css",
-    "\\spotLight\\js",
+    "\\classes",
+    "\\textSprites",
     "\\textSprites\\css",
     "\\textSprites\\js"
   ],
-  "SelectedNode": "\\textSprites",
+  "SelectedNode": "\\classes\\TextToSprite.js",
   "PreviewInSolutionExplorer": false
 }

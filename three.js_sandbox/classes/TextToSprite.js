@@ -3,6 +3,7 @@ if (!document) {
 }
 
 //taken from https://stackoverflow.com/questions/23514274/three-js-2d-text-sprite-labels
+//look at https://gist.github.com/zhangwc/7671190
 function makeTextSprite(message, parameters) {
     if (parameters === undefined) parameters = {};
     var fontface = parameters.hasOwnProperty("fontface") ?
