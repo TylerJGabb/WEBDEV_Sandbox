@@ -22,14 +22,15 @@ scene.add(gridXZ);
 
 intersectables = []//a list of intersectable objects to be specifically tested with the rayCaster
 
+//Make a ball
 var ball = new THREE.Mesh(
     new THREE.SphereGeometry(1, 16, 16),
     new THREE.MeshPhongMaterial({
         color: 0x54FF9F
     })
 );
-ball.intersected = false;
-ball.destination = 'https://www.google.com'
+ball.intersected = false; //add a few
+ball.destination = 'https://www.google.com' //properites to be utilized within animation loop
 ball.update = function (delta) {
     ball.position.x = 5 * Math.cos(delta)
     ball.position.z = 5 * Math.sin(delta)
@@ -39,7 +40,7 @@ ball.update = function (delta) {
         ball.material.color.setHex(0x54FF9F)
     }
 }
-intersectables.push(ball)
+intersectables.push(ball)//add to intersectables
 scene.add(ball)
 
 var spLight = new THREE.SpotLight(0xffffff, 1.5, 50);
@@ -65,14 +66,14 @@ var intersected;
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);//render first or things go broken real quick
-    intersectables.forEach(function (obj) {
+    intersectables.forEach(function (obj) {//set intersected to false for every intersectable
         obj.intersected = false;
     })
     raycaster.setFromCamera(mouse, camera);
     intersected = null
-    if (intersection = raycaster.intersectObjects(intersectables)[0]) {//get first selectable
-        intersected = intersection.object
-        intersected.intersected = true
+    if (intersection = raycaster.intersectObjects(intersectables)[0]) {//get first intersectable
+        intersected = intersection.object//set global variable to be used inside onMouseClick()
+        intersected.intersected = true//set intersected for internal update() method of the intersectable object
     }
     ball.update(delta)
     spHelper.update();
