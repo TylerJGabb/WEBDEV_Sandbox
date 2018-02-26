@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css"
+    "\\css",
+    "\\js"
   ],
-  "SelectedNode": "\\js",
+  "SelectedNode": "\\js\\worldTemplateScript.js",
   "PreviewInSolutionExplorer": false
 }
