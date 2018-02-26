@@ -20,8 +20,7 @@ scene.add(axh);
 var gridXZ = new THREE.GridHelper(10, 10, 0xff0000, 0xffffff)
 scene.add(gridXZ);
 
-
-
+intersectables = []//a list of intersectable objects to be specifically tested with the rayCaster
 
 var ball = new THREE.Mesh(
     new THREE.SphereGeometry(1, 16, 16),
@@ -29,11 +28,6 @@ var ball = new THREE.Mesh(
         color: 0x54FF9F
     })
 );
-
-
-intersectables = []
-intersectables.push(ball)
-
 ball.intersected = false;
 ball.destination = 'https://www.google.com'
 ball.update = function (delta) {
@@ -45,13 +39,13 @@ ball.update = function (delta) {
         ball.material.color.setHex(0x54FF9F)
     }
 }
-
+intersectables.push(ball)
 scene.add(ball)
 
 var spLight = new THREE.SpotLight(0xffffff, 1.5, 50);
 spLight.target = ball
 spLight.position.set(30, 20, 0)
-spLight.angle = Math.PI/30
+spLight.angle = Math.PI / 30
 scene.add(spLight)
 
 var spHelper = new THREE.SpotLightHelper(spLight)
@@ -67,14 +61,15 @@ var raycaster = new THREE.Raycaster()
 var mouse = new THREE.Vector2();
 var intersected;
 
+//setup standard animation loop. Performing raycast within loop
 function animate() {
     requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    renderer.render(scene, camera);//render first or things go broken real quick
     intersectables.forEach(function (obj) {
         obj.intersected = false;
     })
     raycaster.setFromCamera(mouse, camera);
-    intersected = false
+    intersected = null
     if (intersection = raycaster.intersectObjects(intersectables)[0]) {//get first selectable
         intersected = intersection.object
         intersected.intersected = true
@@ -83,7 +78,6 @@ function animate() {
     spHelper.update();
     delta += 0.01
 }
-
 animate();
 
 
@@ -95,8 +89,9 @@ function onMouseMove(e) {
     mouse.y = - (e.offsetY / renderer.domElement.clientHeight) * 2 + 1;
 }
 
+//checking for most recent intersection
 function onMouseClick() {
-    if (intersection) {
+    if (intersected) {
         console.log(intersected)
         window.location.href = intersected.destination
         
